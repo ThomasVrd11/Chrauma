@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Chrauma.sln"
+    "dotnet.defaultSolution": "Chrauma.sln",
+    "FSharp.suggestGitignore": false
 }
