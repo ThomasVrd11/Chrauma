@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	/* Singleton reference */
 	public static GameManager instance;
-	private void Awake() {
+	private void Awake()
+	{
+		/* singleton pattern*/
 		if (instance == null)
 		{
 			instance = this;
@@ -16,37 +17,26 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-    void Start()
-    {
-        // #if !UNITY_EDITOR
-        // Cursor.visible = false;
-        // #endif
 
-		//if save exist
-		//button continue is white
-		// load stat from save
-		// elif new game
-		// stat default
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 	public void SwitchScene(int sceneId)
-    {
-        SceneManager.LoadSceneAsync(sceneId);
-    }
-
+	{
+		/*
+		Asynchronously with to new scene with ID
+		sceneID: ID of the scene to switch to
+		*/
+		SceneManager.LoadSceneAsync(sceneId);
+	}
+	
 	public void ExitGame()
 	{
-        #if UNITY_EDITOR
-            // If running in the Unity Editor
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            // If running in a standalone build
+		/*
+		If running in the Unity Editor, exit the play mode
+        If running in a standalone build, exit the application
+		*/
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
 	}
 }
