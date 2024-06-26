@@ -1,4 +1,4 @@
-# Chrauma
+# ![Chrauma](Media/chrauma.png)
 
 ## Overview
 Chrauma is an action RPG set in an isometric 3D world that lacks colors. Designed for those who love engaging and fun-filled games, Chrauma aims to solve the problem of boredom with an immersive gaming experience.
@@ -7,6 +7,14 @@ Chrauma is an action RPG set in an isometric 3D world that lacks colors. Designe
 - **Platforms**: Windows, Mac
 - **Build**: Available on GitHub (link to be provided)
 - **Website**: TBA
+
+-----
+<p>
+  <img src="Media/capture1.jpg" width="500px"/>
+  <img src="Media/capture2.jpg" width="500px"/>
+</p>
+
+-----
 
 ## Team
 - [**Thomas Viard**](https://github.com/ThomasVrd11) - Lead Developer / Game Designer / Game Programmer
