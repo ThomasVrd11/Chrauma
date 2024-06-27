@@ -14,13 +14,13 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Red
+  - Green
+  - Blue
+  - Enemy
+  - Weapon
+  - Drops
   - 
   - 
   - 
