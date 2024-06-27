@@ -56,10 +56,10 @@ MonoBehaviour:
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   startingHealth: 50
   currentHealth: 0
   lifeDropPrefab: {fileID: 8781463945909259885, guid: 7c231bb2e501042b18e1ec507db46748,
@@ -5926,7 +5926,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4161143679214977555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27981b429ed904b0f9b9689f81f68282, type: 3}
+  m_Script: {fileID: 11500000, guid: 0118637feb1999a488d70cd02816faae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &603668807808996322
