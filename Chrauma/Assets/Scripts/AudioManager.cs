@@ -1,25 +1,20 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    /* Singleton reference */
     public static AudioManager instance;
-    /* Ref to AudioMixer */
+
     public AudioMixer mixer;
-    /* List of background music track */
-    public List<AudioClip> bmgTracks;
-    /* Audio source for background music */
     private AudioSource bgmPlayer;
+    public List<AudioClip> bmgTracks;
 
     private void Awake()
     {
-        /*
-            Singleton pattern
-            Get AudioSource component for background music
-        */
         if (instance == null)
         {
             instance = this;
@@ -29,12 +24,10 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         bgmPlayer = GetComponent<AudioSource>();
     }
     private void Start()
     {
-        /* Load saved volume settings if they exist */
         if (PlayerPrefs.HasKey("volumeMasterPref"))
             SetVolumeMaster(PlayerPrefs.GetFloat("volumeMasterPref"));
         if (PlayerPrefs.HasKey("volumeMusicPref"))
@@ -45,38 +38,19 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolumeMaster(float volumeMaster)
     {
-        /*
-        set the master volume
-            volumeMaster: volume level for the master volume
-        */
         mixer.SetFloat("VolumeMaster", Mathf.Log10(volumeMaster) * 20);
     }
 
     public void SetVolumeMusic(float volumeMusic)
     {
-        /*
-        set the music volume
-            volumeMusic: volume level for the music volume
-        */
         mixer.SetFloat("VolumeMusic", Mathf.Log10(volumeMusic) * 20);
     }
     public void SetVolumeSFX(float volumeSFX)
     {
-        /*
-        set the sound effects volume
-            volumeSFX: volume level for the sound effects volume
-        */
         mixer.SetFloat("VolumeSFX", Mathf.Log10(volumeSFX) * 20);
     }
     public void SaveVolumeSettings()
     {
-        /*
-        Save the current volume settings to Playerprefs
-            Mixer to PlayerPrefs:
-            VolumeMaster to volumeMasterPref
-            VolumeMusic to volumeMusicPref
-            VolumeSFX to volumeSFXrPref
-        */
         float volumeMaster;
         if (mixer.GetFloat("VolumeMaster", out volumeMaster))
         {
@@ -99,24 +73,16 @@ public class AudioManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        /* Subscribe to the sceneLoaded event */
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        /* Unsubscribe to the sceneLoaded event */
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        /*
-        Called when a new scene is loaded.
-        Plays the corresponding backgroud music track for the scene according to its index
-        scene: the scene that was loaded
-        mode: the mode in wich the scene was loaded 
-        */
         int sceneIndex = scene.buildIndex;
 
         if (sceneIndex < bmgTracks.Count && bmgTracks[sceneIndex] != null)
@@ -125,5 +91,7 @@ public class AudioManager : MonoBehaviour
             bgmPlayer.Play();
         }
     }
+
+
 
 }
