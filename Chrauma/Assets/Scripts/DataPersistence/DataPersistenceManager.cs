@@ -40,6 +40,8 @@ public class DataPersistenceManager : MonoBehaviour
         */
         this.dataHandler = new FileDataHandler(Application.dataPath, fileName);
         this.dataPersistencesObjects = FindAllDataPersistenceObjects();
+		Debug.Log(dataPersistencesObjects);
+
     }
     public void NewGame()
     {
@@ -123,7 +125,8 @@ public class DataPersistenceManager : MonoBehaviour
         scene: the scene that was loaded
         mode: the mode in which the scene was loaded
         */
-        this.dataPersistencesObjects = FindAllDataPersistenceObjects();
+        RetrieveDataPersistencesObjects();
+		//Debug.Log(dataPersistencesObjects);
     }
 
     public void DebugList()
@@ -139,4 +142,8 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.Log(dataPersistenceObj.ToString());
         }
     }
+	public void RetrieveDataPersistencesObjects()
+	{
+		this.dataPersistencesObjects = FindAllDataPersistenceObjects();
+	}
 }

@@ -1,0 +1,13 @@
+{
+    "health": 100,
+    "entropy": 100,
+    "scene": 1,
+    "playerPos": {
+        "x": -121.53785705566406,
+        "y": 22.508865356445314,
+        "z": -16.273269653320314
+    },
+    "unlockable1": false,
+    "unlockable2": false,
+    "unlockable3": false
+}
