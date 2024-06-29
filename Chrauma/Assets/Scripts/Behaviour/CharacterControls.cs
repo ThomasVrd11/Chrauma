@@ -60,10 +60,19 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 	// * ########## UI ELEMENTS ########## * //
 	public SkillCooldownUI berserkCooldownUI;
 	private Pause pauseMenu;
+	public bool gamePaused;
 
 	// * ########## Camera ########## * //
 	[SerializeField] Camera mainCamera;
+	
+	// * ########## Sound ########## * //
+	private AudioSource audioSource;
+    public AudioClip dashSound;
+	public AudioClip[] attackSound;
+	
 	public bool debugMode;
+
+
 
 	// * ########## Functions ########## * //
 	void Awake()
@@ -71,6 +80,7 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 		playerInput = new PlayerInputs();
 		characterController = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 
 		// isWalkingHash = Animator.StringToHash("isWalking");
 		// isStrafingLeftHash = Animator.StringToHash("isStrafingLeft");
@@ -172,6 +182,7 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 		if (context.phase == InputActionPhase.Performed && dashCooldownLeft <= 0)
 		{
 			//isDashPressed = true;
+			audioSource.PlayOneShot(dashSound);
 			dashTimeLeft = dashDuration;
 			dashCooldownLeft = dashCooldown;
 			speed = dashSpeed;
@@ -299,6 +310,8 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 	public void onAttack()
 	{
 		scytheDamage.OnAttack();
+		int rand = Random.Range(0, attackSound.Length);
+		audioSource.PlayOneShot(attackSound[rand]);
 	}
 	void UpdateAnimatorParameters()
 	{
@@ -332,7 +345,7 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 
 	void onSkill1(InputAction.CallbackContext context)
 	{
-		if (context.phase == InputActionPhase.Performed && !skill1Pressed)
+		if (context.phase == InputActionPhase.Performed && !skill1Pressed && !gamePaused)
 		{
 			skill1Pressed = true;
 			skill1Stage = Mathf.Clamp(skill1Stage + 1, 1, 3);

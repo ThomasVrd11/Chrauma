@@ -17,10 +17,11 @@ public class TutorialTriggers : MonoBehaviour
 	[SerializeField] GameObject tpEndOfTuto;
 	[SerializeField] Slider healthSlider;
 
-    //private bool isTutoPaused;
+    private CharacterControls characterControls;
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "Player")
         {
+            characterControls = other.GetComponent<CharacterControls>();
             if(gameObject.name == "DashTutoCube")
             {
                 StartDashTuto();
@@ -37,23 +38,19 @@ public class TutorialTriggers : MonoBehaviour
 
         }
     }
+    private void OnTriggerExit(Collider other) {
+
+        gameObject.SetActive(false);
+        if (characterControls) characterControls.gamePaused = false;
+    }
     public void Resume()
     {
-        //isTutoPaused = false;
         Time.timeScale = 1f;
         pauseUI.SetActive(false);
-        if (gameObject.name == "AttackTutoCube")
-        {
-            spawner.isSpawningActive = true;
-        }
-        if(gameObject.name == "DashTutoCube" || gameObject.name == "AttackTutoCube")
-        {
-            gameObject.SetActive(false);
-        }
     }
     public void Pause()
     {
-        //isTutoPaused = true;
+        if (characterControls) characterControls.gamePaused = true;
         Time.timeScale = 0f;
         pauseUI.SetActive(true);
     }

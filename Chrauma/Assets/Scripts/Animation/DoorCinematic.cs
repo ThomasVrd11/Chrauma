@@ -18,11 +18,14 @@ public class DoorCinematic : MonoBehaviour
 
     private Camera mainCamera;
     private bool isOrthographic = true;
+	private AudioSource audioSource;
+	public AudioClip breathAudio;
+	public AudioClip doorAudio;
 
     void Start()
     {
         mainCamera = Camera.main;
-
+		audioSource= gameObject.GetComponent<AudioSource>();
     }
 	private void OnTriggerEnter(Collider other) {
 		if(other.name == "Player" && isOrthographic && !hasBeenTriggered)
@@ -55,6 +58,9 @@ public class DoorCinematic : MonoBehaviour
 		characterController.enabled = false;
 		Debug.Log("cc: " + characterController.enabled);
 
+		
+		audioSource.PlayOneShot(doorAudio);
+		audioSource.PlayOneShot(breathAudio);
 		while(elapsedTime < 3f){
 			float t = elapsedTime / 3f;
 			doorLeft.transform.rotation = Quaternion.Slerp(startRotLeft,endRotLeft,t);
