@@ -411,10 +411,13 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+		Time.timeScale = 1;
 		if (DataPersistenceManager.instance.isLoading)
 		{
 			if (debugMode) Debug.Log("triggered onsceneloaded of charactercontrols " + DataPersistenceManager.instance.loadedPlayerPos);
+			characterController.enabled = false;
 			this.transform.SetPositionAndRotation(DataPersistenceManager.instance.loadedPlayerPos + new Vector3(0, 0.4f, 0), this.transform.rotation);
+			characterController.enabled = true;
 			DataPersistenceManager.instance.isLoading = false;
 		}
 	}

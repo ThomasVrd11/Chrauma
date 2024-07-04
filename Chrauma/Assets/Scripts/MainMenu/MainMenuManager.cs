@@ -40,6 +40,7 @@ public class MainMenuManager : MonoBehaviour
         {
             StartCoroutine(ChangeSaturation());
         }
+        //Debug.Log("checking if save");
         if (DataPersistenceManager.instance.CheckIfSave())
         {
             continueButton.interactable = true;

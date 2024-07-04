@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class DataPersistenceManager : MonoBehaviour
             Destroy(gameObject);
         }
         instance = this;
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
     }
     private void Start()
     {
@@ -38,9 +40,8 @@ public class DataPersistenceManager : MonoBehaviour
         initialize the FileDataHandler with the specified file name
         Find all objects that implement the IDataPersistence interface
         */
-        this.dataHandler = new FileDataHandler(Application.dataPath, fileName);
         this.dataPersistencesObjects = FindAllDataPersistenceObjects();
-		Debug.Log(dataPersistencesObjects);
+		//Debug.Log(dataPersistencesObjects);
 
     }
     public void NewGame()
@@ -87,6 +88,7 @@ public class DataPersistenceManager : MonoBehaviour
         Checks if there is a saved game data file
         return true if save exist,otherwise false
         */
+        //Debug.Log("Checking for save file at: " + Path.Combine(Application.persistentDataPath, fileName));
         this.gameData = dataHandler.Load();
         if (this.gameData != null)
         {
