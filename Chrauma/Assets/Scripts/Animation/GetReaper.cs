@@ -21,6 +21,7 @@ public class GetReaper : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		/* check if it's the player in the trigger, get his controller and script and start the coroutine turnintoreaper*/
 		if (other.gameObject.name == "Player")
 		{
 			player.GetComponent<CharacterController>().enabled = false;
@@ -32,6 +33,7 @@ public class GetReaper : MonoBehaviour
 
 	IEnumerator TurnIntoReaper()
 	{
+		/* cinematic to turn ghost into reaper */
 		player.transform.LookAt(VCGetReaper.gameObject.transform.position);
 		VCGetReaper.gameObject.SetActive(true);
 		yield return new WaitForSeconds(2);
@@ -65,6 +67,7 @@ public class GetReaper : MonoBehaviour
 	}
 	IEnumerator BringColorBack(ColorAdjustments colorAdjustments)
 	{
+		/* up the saturation to bring back colors*/
 		float currentTime = 0f;
 		while (currentTime <= 2.5f)
 		{

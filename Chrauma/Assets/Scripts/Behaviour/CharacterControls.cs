@@ -411,6 +411,7 @@ public class CharacterControls : MonoBehaviour, IDataPersistence
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+		Time.timeScale = 1;
 		if (DataPersistenceManager.instance.isLoading)
 		{
 			if (debugMode) Debug.Log("triggered onsceneloaded of charactercontrols " + DataPersistenceManager.instance.loadedPlayerPos);

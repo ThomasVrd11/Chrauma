@@ -13,10 +13,12 @@ public class TeleportOnInteract : MonoBehaviour
     private GameObject player;
     private GameObject playerTrail;
     private CharacterController characterController;
+    private bool debugMode = false;
 
 
     void Start()
     {
+        /** assign objects to variables **/
         player = GameObject.FindWithTag("Player");
         playerTrail = player.gameObject.transform.Find("ghost/TrailReap").gameObject;
         characterController = player.GetComponent<CharacterController>();
@@ -27,6 +29,7 @@ public class TeleportOnInteract : MonoBehaviour
 
     void Update()
     {
+        /** if player is in the trigger and is pressing G key, start teleporting **/
         if (playerIsInTrigger && Input.GetKeyDown(KeyCode.G) && !isTeleporting)
         {
             StartCoroutine(TeleportPlayer());
@@ -35,24 +38,26 @@ public class TeleportOnInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /* check if it's the player that entered the trigger */
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered trigger");
+            if (debugMode) Debug.Log("Player entered trigger");
             playerIsInTrigger = true;
         }
     }
-    // * Hello nico <3
+
     private void OnTriggerExit(Collider other)
     {
+        /* turn bool to false if player leave the trigger */
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player exited trigger");
+            if (debugMode) Debug.Log("Player exited trigger");
             playerIsInTrigger = false;
         }
     }
-    // * TP logic
     private IEnumerator TeleportPlayer()
     {
+        /* Teleportation logic */
         playerTrail.gameObject.SetActive(false);
         isTeleporting = true;
         Quaternion portalRotationDifference = receivingPortal.rotation * Quaternion.Inverse(transform.rotation);

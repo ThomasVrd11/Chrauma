@@ -24,10 +24,12 @@ public class DoorCinematic : MonoBehaviour
 
     void Start()
     {
+        /* assign objects to variables */
         mainCamera = Camera.main;
 		audioSource= gameObject.GetComponent<AudioSource>();
     }
 	private void OnTriggerEnter(Collider other) {
+		/* check if player is in trigger and start the cinematic coroutine */
 		if(other.name == "Player" && isOrthographic && !hasBeenTriggered)
 		{
 			SwitchCam(isOrthographic);
@@ -37,6 +39,7 @@ public class DoorCinematic : MonoBehaviour
 	}
 	private void SwitchCam(bool isOrthographic)
 	{
+		/* switch from player camera to cinematic camera (names are legacy) */
 		if(isOrthographic)
 		{
 			perspectiveCamera.gameObject.SetActive(true);
@@ -49,6 +52,7 @@ public class DoorCinematic : MonoBehaviour
 		}
 	}
 	IEnumerator StopPlayerForASec(float timeStopped){
+		/* prevent player input and move character for cinematic before resuming */
 		float elapsedTime = 0;
 
 		Quaternion startRotLeft = doorLeft.transform.rotation;
@@ -81,6 +85,7 @@ public class DoorCinematic : MonoBehaviour
 	}
 	IEnumerator AnimateDoorCamera()
 	{
+		/* travelling camera switch */
 		yield return new WaitForSeconds(2);
 		perspectiveCamera.gameObject.SetActive(false);
 		cameraDoor2.gameObject.SetActive(true);

@@ -13,6 +13,7 @@ public class CloudRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* rotate the gameobject*/
         this.transform.Rotate(new Vector3(0, 1, 0) * 4 * Time.deltaTime);
     }
 }

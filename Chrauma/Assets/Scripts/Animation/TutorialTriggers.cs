@@ -19,6 +19,7 @@ public class TutorialTriggers : MonoBehaviour
 
     private CharacterControls characterControls;
     private void OnTriggerEnter(Collider other) {
+        /* if object in trigger is the player, get his control script and start a tutorial based on the gameobject the script is on */
         if (other.gameObject.name == "Player")
         {
             characterControls = other.GetComponent<CharacterControls>();
@@ -39,17 +40,19 @@ public class TutorialTriggers : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other) {
-
-        gameObject.SetActive(false);
+        /* deactivate the gameobejct when player leave */
         if (characterControls) characterControls.gamePaused = false;
+        gameObject.SetActive(false);
     }
     public void Resume()
     {
+        /* unpause the game */
         Time.timeScale = 1f;
         pauseUI.SetActive(false);
     }
     public void Pause()
     {
+        /* pause the game */
         if (characterControls) characterControls.gamePaused = true;
         Time.timeScale = 0f;
         pauseUI.SetActive(true);
@@ -57,16 +60,19 @@ public class TutorialTriggers : MonoBehaviour
 
     public void StartMovTuto()
     {
+        /* activate the movement tutorial and pause the game */
         movementTuto.SetActive(true);
         Pause();
     }
     public void StartDashTuto()
     {
+        /* activate the dash tutorial and pause the game */
         dashTuto.SetActive(true);
         Pause();
     }
     private void StartAttackTuto()
     {
+        /* activate the attack tutorial and fight UI with health initialized, pause the game and start the spawner */
         attackTuto.SetActive(true);
 		tpEndOfTuto.SetActive(true);
         Pause();

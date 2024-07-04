@@ -12,14 +12,15 @@ private bool isWalking = false;
 
     void Start()
     {
+        /* assign objects to variables */
         animator = GetComponent<Animator>();
 		parent = gameObject.transform.parent;
 		oldPosition = parent.position;
-        //rb = parent.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+		/* check if gameobject is moving to activate walking animation */
 		if(parent.position != oldPosition)
 		{
 			isWalking = true;
@@ -33,6 +34,7 @@ private bool isWalking = false;
         animator.SetBool("isIdle", !isWalking);
     }
 	public void startAttackAnimation(){
+		/* launch the attack animation */
 		animator.SetTrigger("isAttacking");
 	}
 }
