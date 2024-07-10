@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 //debug
 using TMPro;
 
-public class Enemy : MonoBehaviour
+public class Enemy : BaseEnemy
 {
     public NavMeshAgent agent;
     public Transform player;
@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         currentHealth -= damage;
         if (debugHP) Debug.Log(gameObject.name + " hp:" + currentHealth);
@@ -155,5 +155,9 @@ public class Enemy : MonoBehaviour
     {
         hptext.text = "" + currentHealth;
         hptext2.text = "" + damage;
+    }
+    public void ResetWalkPoint()
+    {
+        SearchWalkPoint();
     }
 }

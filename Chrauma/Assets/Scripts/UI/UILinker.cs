@@ -21,22 +21,4 @@ public class UILinker : MonoBehaviour
         PlayerStats.instance.HideDeath();
         GameManager.instance.RestartGame();
     }
-
-    public void SetVolMaster(float volume)
-    {
-        AudioManager.instance.SetVolumeMaster(volume);
-    }
-    public void SetVolMusic(float volume)
-    {
-        AudioManager.instance.SetVolumeMusic(volume);
-    }
-    public void SetVolSFX(float volume)
-    {
-        AudioManager.instance.SetVolumeSFX(volume);
-    }
-
-    public void SaveVolSettings()
-    {
-        AudioManager.instance.SaveVolumeSettings();
-    }
 }

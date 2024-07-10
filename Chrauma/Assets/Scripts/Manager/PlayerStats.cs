@@ -63,18 +63,18 @@ public class PlayerStats : MonoBehaviour, IDataPersistence
 	{
 		InitializeUI();
 	}
-	private void InitializeUI()
+	public void InitializeUI()
 	{
 		UI = GameObject.Find("---- UI ----");
 		if (UI != null)
 		{
-			Transform healthTransform = UI.transform.Find("HealthBar_");
+			Transform healthTransform = UI.transform.Find("UIFight/Block HP MANA/HealthBar_");
 			if (healthTransform != null)
 			{
 				slider_health = healthTransform.GetComponent<Slider>();
 			}
 
-			Transform entropyTransform = UI.transform.Find("EntropyBar_");
+			Transform entropyTransform = UI.transform.Find("UIFight/Block HP MANA/EntropyBar_");
 			if (entropyTransform != null)
 			{
 				slider_entropy = entropyTransform.GetComponent<Slider>();
@@ -87,7 +87,7 @@ public class PlayerStats : MonoBehaviour, IDataPersistence
 	// Update is called once per frame
 	private void UpdateSliders()
 	{
-		if (slider_health != null)
+			if (slider_health != null)
 		{
 			slider_health.value = current_health;
 			if (debugMode) Debug.Log("health has been updated to: " + slider_health.value);

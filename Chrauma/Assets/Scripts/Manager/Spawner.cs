@@ -102,6 +102,7 @@ public class Spawner : MonoBehaviour
 					agent.Warp(spawnPosition);
 				}
 				enemy.gameObject.SetActive(true);
+				enemy.ResetWalkPoint();
 				currentActiveEnemies++;
 				totalSpawnedEnemies++;
 			}

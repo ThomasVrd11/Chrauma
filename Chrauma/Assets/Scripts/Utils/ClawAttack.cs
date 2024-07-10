@@ -15,6 +15,7 @@ public class ClawAttack : MonoBehaviour
 	}
 	private void OnTriggerEnter(Collider other) {
 		if (other.name == "Player" && !damageCD) {
+			Debug.Log("attack!");
 			PlayerStats.instance.TakeDamage(damage);
 			damageCD = true;
 			StartCoroutine(CooldownAttack());

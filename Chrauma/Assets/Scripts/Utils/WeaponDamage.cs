@@ -24,7 +24,8 @@ public class WeaponDamage : MonoBehaviour
 
             foreach (RaycastHit hit in hits)
             {
-                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                BaseEnemy enemy = hit.collider.GetComponent<BaseEnemy>();
+                Debug.Log("enemy: " + enemy);
                 if (enemy != null)
                 {
                     int weaponDamage = CalculateDamage();
