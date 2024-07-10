@@ -37,6 +37,8 @@ public class Enemy : BaseEnemy
     public bool debugHP = false;
     [SerializeField] ParticleSystem bloodSplatter;
     [SerializeField] GameObject deathSmoke;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] audioClips;
 
     private void Awake()
     {
@@ -119,6 +121,7 @@ public class Enemy : BaseEnemy
         currentHealth -= damage;
         if (debugHP) Debug.Log(gameObject.name + " hp:" + currentHealth);
         bloodSplatter.Play();
+        audioSource.PlayOneShot(audioClips[0]);
         if (debugHP )DebugHP(damage);
         if (currentHealth <= 0) EnemyDies();
     }
